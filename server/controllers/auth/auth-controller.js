@@ -2,8 +2,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../../models/User");
 
-const JWT_SECRET_KEY =
-  process.env.JWT_SECRET_KEY || "your_fallback_secret_for_dev_only";
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "dev_fallback_secret";
+const isProduction = process.env.NODE_ENV === "production";
 if (!process.env.JWT_SECRET_KEY) {
   console.warn(
     "JWT_SECRET_KEY is not set as an environment variable! Using a fallback for development. THIS IS NOT SECURE FOR PRODUCTION."
