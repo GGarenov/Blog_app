@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
   return (
     <header className="sticky top-0 z-50 bg-gray-900 text-white shadow-md flex items-center justify-between px-8 py-3">
       <div className="font-bold text-2xl tracking-wide">
@@ -40,18 +43,29 @@ const Header = () => {
       </nav>
 
       <div className="flex gap-3">
-        <Link
-          to="/login"
-          className="px-5 py-2 bg-orange-500 text-white rounded-full font-semibold text-base hover:bg-orange-600 transition-colors"
-        >
-          Login
-        </Link>
-        <Link
-          to="/register"
-          className="px-5 py-2 bg-white text-gray-900 border border-white rounded-full font-semibold text-base hover:bg-orange-500 hover:text-white transition-colors"
-        >
-          Register
-        </Link>
+        {!isAuthenticated ? (
+          <>
+            <Link
+              to="/login"
+              className="px-5 py-2 bg-orange-500 text-white rounded-full font-semibold text-base hover:bg-orange-600 transition-colors"
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className="px-5 py-2 bg-white text-gray-900 border border-white rounded-full font-semibold text-base hover:bg-orange-500 hover:text-white transition-colors"
+            >
+              Register
+            </Link>
+          </>
+        ) : (
+          <Link
+            to="/profile"
+            className="px-5 py-2 bg-white text-gray-900 border border-white rounded-full font-semibold text-base hover:bg-orange-500 hover:text-white transition-colors"
+          >
+            Profile
+          </Link>
+        )}
       </div>
     </header>
   );

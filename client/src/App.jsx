@@ -1,15 +1,28 @@
 import { Route, Routes } from "react-router-dom";
-// import { AuthLayout } from "./components/auth/layout";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import { checkAuth } from "./store/auth-slice";
 
 function App() {
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={<Login isAuthenticated={isAuthenticated} />}
+        />
         <Route path="/register" element={<Register />} />
       </Routes>
     </div>
