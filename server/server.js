@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth/auth-routes");
 
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(
 );
 
 app.use(express.json());
+app.use(cookieParser());
 app.use("/api/auth", authRouter);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
