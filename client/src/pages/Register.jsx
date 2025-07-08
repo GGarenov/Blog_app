@@ -27,7 +27,7 @@ const Register = () => {
     setError("");
     const res = await dispatch(registerUser(formData));
     if (res?.payload?.success) {
-      navigate("/home");
+      navigate("/login");
     } else {
       setError(res?.payload?.message || "Registration failed");
     }
