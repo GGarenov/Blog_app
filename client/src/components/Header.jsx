@@ -32,7 +32,7 @@ const Header = () => {
           Home
         </Link>
         <Link
-          to="/news"
+          to="/listing"
           className="text-white text-lg font-medium hover:text-orange-400 transition-colors"
         >
           News
