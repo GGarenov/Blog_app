@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import { checkAuth } from "./store/auth-slice";
 import Profile from "./pages/Profile";
+import Listing from "./pages/Listing";
 
 // Protected Route Component
 function ProtectedRoute({ children }) {
@@ -52,6 +53,7 @@ function App() {
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/listing" element={<Listing />} />
         <Route
           path="/login"
           element={<Login isAuthenticated={isAuthenticated} user={user} />}
