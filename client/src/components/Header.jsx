@@ -1,13 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../store/auth-slice";
 
 const Header = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    await dispatch(logoutUser());
+    navigate("/");
   };
 
   return (
@@ -72,12 +75,12 @@ const Header = () => {
             >
               Profile
             </Link>
-            <Link
+            <button
               onClick={handleLogout}
               className="px-5 py-2 bg-orange-500 text-white rounded-full font-semibold text-base hover:bg-orange-600 transition-colors"
             >
               Logout
-            </Link>
+            </button>
           </>
         )}
       </div>

@@ -12,17 +12,19 @@ const initialState = loginFormControls.reduce((acc, curr) => {
 
 import { useSelector } from "react-redux";
 
+import { useEffect } from "react";
+
 function AuthLogin({ isAuthenticated }) {
   const [formData, setFormData] = useState(initialState);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const authState = useSelector((state) => state.auth);
 
-  if (isAuthenticated) {
-    navigate("/");
-    return null;
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
 
   function onChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
