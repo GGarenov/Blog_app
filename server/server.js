@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth/auth-routes");
+const postRouter = require("./routes/post/post-routes");
 
 dotenv.config();
 
@@ -26,5 +27,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth", authRouter);
+app.use("/api/posts", postRouter);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
